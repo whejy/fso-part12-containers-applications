@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 3456:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes:
+      # Specify script to run on container initialisation and map it to the container. We need to create our Mongo superuser.
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      # Create a local directory to persist DB data and map it to the container
+      - ./mongo_data:/data/db
