@@ -62,3 +62,6 @@ typings/
 
 # persisted DB files
 mongo_data
+
+# persisted Redis data
+redis_data
